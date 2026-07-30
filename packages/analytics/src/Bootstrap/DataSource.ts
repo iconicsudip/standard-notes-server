@@ -37,6 +37,7 @@ const replicationConfig = {
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
+        url: env.get('DB_URL', true) ? env.get('DB_URL', true) : undefined,
   charset: 'utf8mb4',
   supportBigNumbers: true,
   bigNumberStrings: false,

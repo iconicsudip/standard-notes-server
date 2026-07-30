@@ -1,0 +1,20 @@
+services:
+  db:
+    image: mysql:8
+    container_name: db_self_hosted
+    environment:
+      - MYSQL_DATABASE=standard_notes_db
+      - MYSQL_USER=std_notes_user
+      - MYSQL_ROOT_PASSWORD=changeme123
+      - MYSQL_PASSWORD=changeme123
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+  cache:
+    image: redis:6.0-alpine
+    container_name: cache_self_hosted
+    ports:
+      - 6379:6379
+    restart: unless-stopped

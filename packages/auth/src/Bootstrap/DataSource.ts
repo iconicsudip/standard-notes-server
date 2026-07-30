@@ -104,6 +104,7 @@ export class AppDataSource {
       const mySQLDataSourceOptions: MysqlConnectionOptions = {
         ...commonDataSourceOptions,
         type: 'mysql',
+        url: this.configuration.env.get('DB_URL', true) ? this.configuration.env.get('DB_URL', true) : undefined,
         charset: 'utf8mb4',
         supportBigNumbers: true,
         bigNumberStrings: false,

@@ -3,7 +3,7 @@ import { BaseMiddleware } from 'inversify-express-utils'
 import { verify } from 'jsonwebtoken'
 import { CrossServiceTokenData } from '@standardnotes/security'
 import * as winston from 'winston'
-import { RoleName } from '@standardnotes/domain-core'
+
 import { ResponseLocals } from '../ResponseLocals'
 
 export class InversifyExpressAuthMiddleware extends BaseMiddleware {
@@ -29,7 +29,7 @@ export class InversifyExpressAuthMiddleware extends BaseMiddleware {
       Object.assign(response.locals, {
         user: decodedToken.user,
         roles: decodedToken.roles,
-        isFreeUser: decodedToken.roles.length === 1 && decodedToken.roles[0].name === RoleName.NAMES.CoreUser,
+        isFreeUser: false,
         session: decodedToken.session,
         readOnlyAccess: decodedToken.session?.readonly_access ?? false,
         sharedVaultOwnerContext: decodedToken.shared_vault_owner_context,
